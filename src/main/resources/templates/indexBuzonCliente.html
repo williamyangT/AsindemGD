@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+     <title>Asindem Gestion Documental</title>
+    <!--JQUERY-->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="/static/css/user-form.css" th:href="@{/css/user-form.css}"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css" th:href="@{/css/main.css}"/>
+
+    <!-- DATA TABLE -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+            $('#altaList').DataTable();
+         });
+    </script>
+</head>
+<body>
+<div th:replace="navBar :: navbar">
+</div>
+<div class="container">
+    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+        <br>  <br> <p th:text="${messageConfirmar}" th:if="${messageConfirmar ne null}" class="alert alert-danger"></p>
+        <div class="card">
+            <div class="card-header">
+                <h4>TABLA DE ALTAS</h4>
+            </div>
+            <div class="card-body">
+                <div th:include="buzon-cliente-list.html" th:remove="tag"></div>
+            </div>
+
+        </div>
+        <br>
+        <button class="container btn btn-secondary btn-block btn-success" name="createAlta" data-toggle="modal" data-target="#exampleModalCenterBuz">CONFIRMAR DEVOLUCION</button>
+        <div class="modal fade" id="exampleModalCenterBuz" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLongTitle">!Aviso!</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Confirmas: </h4>
+                        <ul>
+                            <li>Generar PDF</li>
+                            <li>Firmar PDF</li>
+                            <li>Subir PDF</li>
+                        </ul>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <form th:action="@{/devolver-okBuzon}"  th:object="${buzon}" method="post" >
+                            <input type="hidden" name="clienteId" id="id4" required="riquired" class="form-control" placeholder="Id" th:value="${buzon.clienteId}" >
+                            <button type="submit" class="btn btn-secondary btn-block btn-success" name="createAlta">CONFIRMAR</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="container btn btn-secondary btn-block btn-warning" name="volver" data-toggle="modal" data-target="#volver">CANCELAR</button>
+        <div class="modal fade" id="volver" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="volverTitulo">!Aviso!</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <h4>¿Deseas cerrar esta página?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                        <form th:action="@{/devolver-backBuzon}"  method="post" >
+                            <button type="submit" class="btn btn-secondary btn-block btn-success" name="createAlta">Si</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        <section class="my-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 mx-auto">
+                        <h2>Subir PDF</h2>
+                        <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
+                        <p th:text="${messageError}" th:if="${messageError ne null}" class="alert alert-danger"></p>
+                        <form method="post" th:action="@{/uploadBuzon}"th:object="${buzon}" enctype="multipart/form-data">
+                            <input type="hidden" name="clienteId" id="id3" required="riquired" class="form-control" placeholder="Id" th:value="${buzon.clienteId}" >
+                            <div class="form-group">
+                                <input type="file" name="file" class="form-control-file">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Subir</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <br>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <title>Relacion</title>
+    <!--JQUERY-->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="/static/css/user-form.css" th:href="@{/css/user-form.css}"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css" th:href="@{/css/main.css}"/>
+
+    <!-- DATA TABLE -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Asegurate que el id que le diste a la tabla sea igual al texto despues del simbolo #
+            $('#relacionesList').DataTable();
+        });
+    </script>
+</head>
+<body>
+
+<div th:replace="navBarForUsers :: navbarForUsers">
+
+</div>
+
+<div class="container">
+    <div class="tab-pane fade show active" id="list" role="tabpanel" aria-labelledby="list-tab">
+
+        <br>
+        <form class="container" th:action="@{/select-add-clienteForUsers}" th:object="${relacionClienteFormView}" method="post">
+            <input type="hidden" name="relacionId" th:value="${relacionClienteFormView.relacionId}">
+            <input type="hidden" name="relacionNombre" th:value="${relacionClienteFormView.relacionNombre}">
+            <input type="hidden" name="clienteId" th:value="${null}">
+            <input type="hidden" name="clienteNombre" th:value="${null}">
+            <button type="submit" class="btn btn-success btn-block" name="createAlta">Añadir Cliente</button>
+        </form>
+        <br>
+        <div class="card">
+            <div class="card-header">
+                 <h4 th:text="${relacionClienteFormView.relacionNombre}"></h4 >
+            </div>
+            <div class="card-body">
+                <div th:include="relaciones-clientes-list.html" th:remove="tag"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<br>
+</body>
+</html>

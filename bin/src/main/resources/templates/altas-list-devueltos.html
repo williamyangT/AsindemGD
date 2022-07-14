@@ -1,0 +1,36 @@
+<div class="table-responsive">
+    <table id="altaListDevueltos" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha inicio</th>
+            <th scope="col">Fecha entrega</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Documentos</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Pdf</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="alta: ${altaListDevueltos}">
+            <td th:text="${alta.id}"></td>
+            <td th:text="${alta.fecha_inicio}"></td>
+            <td th:text="${alta.fecha_entrega}"></td>
+            <td th:text="${alta.usuario}"></td>
+            <td th:text="${alta.cliente}"></td>
+            <td th:text="${alta.documentos}"></td>
+            <td th:text="${alta.estado}"></td>
+            <td>
+                <form th:action="@{/download}" th:object="${alt}" method="get">
+                    <input type="hidden" name="pdf" th:value="${alta.pdf}">
+                    <button class="btn btn-info" type="submit">Pdf</button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+

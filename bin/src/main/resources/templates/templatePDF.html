@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/>
+</head>
+<body>
+<img src="/static/images/asindemLogo.jpeg" th:src="@{/images/asindemLogo.jpeg}" alt="Logo Asindem" width="75"
+     height="75"></img>
+<p class="thick title" align="right"><strong><span th:text="${clienteNombre}"></span></strong></p>
+<p  align="right"><span th:text="${clienteDireccion}"></span></p>
+<br></br>
+<br></br>
+<p><span> Señor/es:</span></p>
+<ul>
+<p><span> Adjunto a la presente, les remitimos documentación original que detallamos a pie de página y que debe obrar en su poder.</span>
+</p>
+</ul>
+<p><span>   Atentamente, </span></p>
+<img src="/static/images/firma.jpeg" th:src="@{/images/firma.jpeg}" alt="Firma Asindem" width="140"
+     height="85"></img>
+<br></br>
+<br></br>
+<br></br>
+<p><h5><span> Conforme he recibido:</span></h5></p>
+<ul>
+<h6 th:text="${fecha}"></h6>
+<h6>Firma:</h6>
+</ul>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<p><strong><u>DOCUMENTACIÓN ADJUNTA ORIGINAL:</u></strong></p>
+<ul>
+    <tr th:each="documento: ${listaDocumentos}">
+    <li>
+        <td th:text="${documento}"></td>
+    </li>
+    </tr>
+</ul>
+
+
+</body>
+</html>

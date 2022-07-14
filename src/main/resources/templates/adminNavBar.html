@@ -1,0 +1,21 @@
+<div th:fragment="navBar">
+    <nav class="navbar navbar-expand-md">
+        <img src="/static/images/asindemLogo.jpeg" th:src="@{/images/asindemLogo.jpeg}" alt="Logo Asindem" width="75"
+             height="75">
+        <a class="navbar-brand" href="/"> &nbsp ASINDEM GESTION DOCUMENTAL</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/adminAltas-revertir">DOC. ENTREGADA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/adminAltas">ALTAS ELIMINADAS</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</div>

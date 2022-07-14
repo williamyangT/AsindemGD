@@ -1,0 +1,51 @@
+<div class="table-responsive">
+    <table id="altaListDeleted" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha inicio</th>
+            <th scope="col">Fecha entrega</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Documentos</th>
+            <th scope="col">Estado</th>
+            <th scope="col">ELIMINAR</th>
+            <th scope="col">Recuperar</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="alta: ${altaListDeleted}">
+            <td th:text="${alta.id}"></td>
+            <td th:text="${alta.fecha_inicio}"></td>
+            <td th:text="${alta.fecha_entrega}"></td>
+            <td th:text="${alta.usuario}"></td>
+            <td th:text="${alta.cliente}"></td>
+            <td th:text="${alta.documentos}"></td>
+            <td th:text="${alta.estado}"></td>
+            <td>
+                <form th:action="@{/delete-alta}" th:object="${alt}" method="post">
+                    <input type="hidden" name="id" th:value="${alta.id}">
+                    <input type="hidden" name="fecha_inicio" th:value="${alta.fecha_inicio}">
+                    <input type="hidden" name="fecha_entrega" th:value="${alta.fecha_entrega}">
+                    <input type="hidden" name="usuario" th:value="${alta.usuario}">
+                    <input type="hidden" name="cliente" th:value="${alta.cliente}">
+                    <input type="hidden" name="documentos" th:value="${alta.documentos}">
+                    <input type="hidden" name="codigoUsuario" th:value="${alta.codigoUsuario}">
+                    <input type="hidden" name="codigoCliente" th:value="${alta.codigoCliente}">
+                    <button class="btn btn-danger" type="submit">ELIMINAR</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/revertir-documentos}" th:object="${alt}" method="post">
+                    <input type="hidden" name="id" th:value="${alta.id}">
+                    <button class="btn btn-dark" type="submit">RECUPERAR</button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+

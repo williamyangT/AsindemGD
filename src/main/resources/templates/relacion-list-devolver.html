@@ -1,0 +1,27 @@
+<div class="table-responsive">
+    <table id="clienteListRelacion" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Generar Devolucion</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente: ${clienteListRelacion}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nombre}"></td>
+            <td>
+                <form th:action="@{/devolver}" th:object="${devolverFormView}" method="post">
+                    <input type="hidden" name="id" th:value="${cliente.id}">
+                    <input type="hidden" name="name" th:value="${cliente.nombre}">
+                    <button class="btn btn-success" type="submit">DEVOLUCION</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

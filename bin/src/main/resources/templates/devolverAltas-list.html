@@ -1,0 +1,23 @@
+<div class="table-responsive">
+    <table id="devolverAltaList" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Fecha inicio</th>
+             <th scope="col">Usuario</th>
+            <th scope="col">Cliente</th>
+            <th scope="col">Documentos</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="alta: ${altaList}">
+            <td th:text="${alta.id}"></td>
+            <td th:text="${alta.fecha_inicio}"></td>
+             <td th:text="${alta.usuario}"></td>
+            <td th:text="${alta.cliente}"></td>
+            <td th:text="${alta.documentos}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+

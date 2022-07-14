@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    <title>Editar Cliente</title>
+    <!--JQUERY-->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="/static/css/user-form.css" th:href="@{/css/user-form.css}"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css" th:href="@{/css/main.css}"/>
+
+    <!-- DATA TABLE -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+
+<div th:replace="navBar :: navbar">
+
+</div>
+
+<br>
+
+<form class="container" th:action="@{/confirmar-editar-cliente}" th:object="${client}"  method="post">
+    <br>
+    <h1 class="feature-title">EDITAR CLIENTE</h1>
+    <form id="bookForm">
+        <div class="form-group">
+            <h3>Cliente ID</h3>
+            <input name="id" id="codigoClient" required="riquired" minlength="5" maxlength="5"type="textro" class="form-control" placeholder="Id" th:value="${client.id}" readonly=""
+            >
+        </div>
+        <div class="form-group">
+            <h3>Nombre</h3>
+            <input name="nombre" id="client" required="riquired" type="text" class="form-control" placeholder="Cliente" th:value="${client.nombre}"
+            >
+        </div>
+        <div class="form-group">
+            <h3>Direccion</h3>
+            <input name="direccion" id="direccionClient"required="riquired"  type="text" class="form-control" placeholder="Direccion del Cliente" th:value="${client.direccion}"
+            >
+        </div>
+
+        <button class="btn btn-secondary btn-block btn-success" name="confirmarEditarCliente">CONFIRMAR</button>
+    </form>
+    <br>
+    <form class="container" th:action="@{/editar-cliente-back}" method="post" >
+        <button  type="submit" class="btn btn-secondary btn-block btn-warning" name="createAlta">CANCELAR</button>
+    </form>
+    <br><br><br>
+    <button  class="container btn btn-secondary btn-block btn-danger" name="createAlta" data-toggle="modal" data-target="#exampleModalCenter">---ELIMINAR---</button>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLongTitle">!Aviso!</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>Confirmar que quieres eliminar</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <form th:action="@{/eliminar-cliente}" th:object="${client}"method="post" >
+                        <input type="hidden" name="id" id="id2" required="riquired" class="form-control" placeholder="Id" th:value="${client.id}" >
+                        <button type="submit" class="btn btn-secondary btn-block btn-danger" name="createAlta">ELIMINAR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<div class="table-responsive">
+    <table id="altaListMailBox" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">PDF</th>
+            <th scope="col">PDF</th>
+
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="buzon: ${altaListMailBox}">
+            <td th:text="${buzon.clienteId}"></td>
+            <td th:text="${buzon.cliente}"></td>
+            <td>
+                <form class="container" th:action="@{/generarPDFBuzon}" th:object="${buzon}" method="get">
+                    <input type="hidden" name="clienteId" id="id" required="riquired" class="form-control" placeholder="Id" th:value="${buzon.clienteId}" >
+                    <button type="submit" class="btn btn-secondary btn-block btn-secondary" name="pdf">Castellano</button>
+                </form>
+            </td>
+            <td>
+            <form class="container" th:action="@{/generarPDFCatalanBuzon}" th:object="${buzon}"method="get">
+                <input type="hidden" name="clienteId" id="id2" required="riquired" class="form-control" placeholder="Id" th:value="${buzon.clienteId}" >
+                <button   type="submit" class="btn btn-secondary btn-block btn-info" name="pdf">Catalan</button>
+            </form>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+

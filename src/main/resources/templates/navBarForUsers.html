@@ -1,0 +1,35 @@
+<div th:fragment="navbarForUsers">
+    <nav class="navbar navbar-expand-md">
+        <img src="/static/images/asindemLogo.jpeg" th:src="@{/images/asindemLogo.jpeg}" alt="Logo Asindem" width="75"
+             height="75">
+        <a class="navbar-brand" href="/indexForUsers"> &nbsp ASINDEM GESTION DOCUMENTAL</a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/indexForUsers">DOC. ENTREGADA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/nuevas-altasForUsers">NUEVAS ALTAS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/altas-preapradasForUsers">DOC. EN RECEPCION</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/crear-altaForUsers">CREAR ALTA</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientesForUsers">CLIENTES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/relacionesForUsers">RELACIONES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuariosForUsers">USUARIOS</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

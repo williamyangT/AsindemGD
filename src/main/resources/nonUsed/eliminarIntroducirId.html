@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Devolver Documentos</title>
+    <meta charset="ISO-8859-1"/>
+    <meta charset="utf-8">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css" th:href="@{/css/main.css}"/>
+
+</head>
+<body>
+<div th:replace="navBar :: navbar">
+
+</div>
+
+
+<form class="container features" th:action="@{/eliminar}" th:object="${deleteFormView}" method="post">
+    <br>
+    <h1 class="feature-title">Introduce ID alta</h1>
+    <form id="bookForm">
+        <div class="form-group">
+            <input id="user" required="riquired" type="text" class="form-control" placeholder="ID"
+                   th:field="*{id}">
+        </div>
+        <button type="submit" class="btn btn-secondary btn-block" name="createAlta">ELIMINAR</button>
+    </form>
+</form>
+</body>
+</html>

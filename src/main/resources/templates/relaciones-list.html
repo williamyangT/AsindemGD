@@ -1,0 +1,37 @@
+<div class="table-responsive">
+    <table id="relacionesList" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+             <th scope="col">Nombre</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Informacion</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="relacion: ${relacionesList}">
+             <td th:text="${relacion.nombre}"></td>
+            <td>
+                <form th:action="@{/editar-relacion}" th:object="${relacionClienteFormView}" method="post">
+                    <input type="hidden" name="relacionId" th:value="${relacion.id}">
+                    <input type="hidden" name="relacionNombre" th:value="${relacion.nombre}">
+                    <input type="hidden" name="clienteId" th:value="${null}">
+                    <input type="hidden" name="clienteNombre" th:value="${null}">
+                    <button class="btn btn-warning" type="submit">EDITAR</button>
+                </form>
+            </td>
+             <td>
+                 <form th:action="@{/ver-relacion}" th:object="${relacionClienteFormView}" method="post">
+                     <input type="hidden" name="relacionId" th:value="${relacion.id}">
+                     <input type="hidden" name="relacionNombre" th:value="${relacion.nombre}">
+                     <input type="hidden" name="clienteId" th:value="${null}">
+                     <input type="hidden" name="clienteNombre" th:value="${null}">
+                     <button class="btn btn-info" type="submit">VER</button>
+                </form>
+
+         </tr>
+        </tbody>
+    </table>
+</div>
+

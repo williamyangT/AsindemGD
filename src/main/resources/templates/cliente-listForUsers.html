@@ -1,0 +1,31 @@
+<div class="table-responsive">
+    <table id="clienteList" class="table table-bordered table-hover table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Editar</th>
+
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente: ${clienteList}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.direccion}"></td>
+            <td>
+                <form th:action="@{/editar-clienteForUsers}" th:object="${client}" method="post">
+                    <input type="hidden" name="id" th:value="${cliente.id}">
+                    <input type="hidden" name="nombre" th:value="${cliente.nombre}">
+                    <input type="hidden" name="direccion" th:value="${cliente.direccion}">
+                    <button class="btn btn-warning" type="submit">EDITAR</button>
+                </form>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
